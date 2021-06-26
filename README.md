@@ -30,14 +30,24 @@
       painting = false;
       context.beginPath();
     }
+    
+    function getMousePos(canvas, e) {
+      var rect = canvas.getBoundingClientRect();
+      return {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+      };
+    }
 
     function draw(e){
       if (!painting) return;
       context.lineWidth = 20;
       context.lineCap = "round";
       context.strokeStyle = "white";
+      
+      var pos = getMousePos(canvas, e)
 
-      context.lineTo(e.clientX, e.clientY);
+      context.lineTo(pos.x, pos.y);
       context.stroke();
     }
 
