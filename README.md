@@ -4,13 +4,19 @@
 <p>
   <button type="button" id="clear-button">Clear Canvas</button>
   <button type="button" id="imgulr-button">Copy img URL</button>
+  <button type="button" id="predict-button">Predict</button>
 </p>
+<p>Predicted Number: <span id="predicted-number"></span></p>
+<p>Confidence: <span id="confidence"></span></p>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
 <script>
   window.addEventListener("load", () => {
     const canvas = document.querySelector("#canvas");
     const context = canvas.getContext("2d");
     const clearButton = document.querySelector("#clear-button");
     const urlButton = document.querySelector("#imgulr-button");
+    
+    const model = await tf.loadLayersModel("model/model.json");
 
     canvas.height = 300;
     canvas.width = 300;
