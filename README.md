@@ -11,12 +11,17 @@
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
 <script>
   window.addEventListener("load", () => {
+    //HTML elements
     const canvas = document.querySelector("#canvas");
     const context = canvas.getContext("2d");
     const clearButton = document.querySelector("#clear-button");
     const urlButton = document.querySelector("#imgulr-button");
+    const predictButton = document.querySelector("predict-button");
     
-    const model = await tf.loadLayersModel("model/model.json");
+    //Loading model
+    //console.log("Loading model...");
+    //const model = await tf.loadLayersModel("model/model.json");
+    //console.log("Model loaded...");
 
     canvas.height = 300;
     canvas.width = 300;
@@ -71,6 +76,12 @@
       document.execCommand('copy');
       inputc.parentNode.removeChild(inputc);
     }
+    
+    function getImageTensor(){
+      console.log("inside getImageTensor function");
+      const imageTensor = tf.fromPixels(canvas);
+      console.log(imageTensor.shape);
+    }
 
     //Event listeners
     canvas.addEventListener("mousedown", startPosition);
@@ -78,5 +89,7 @@
     canvas.addEventListener("mousemove", draw);
     clearButton.addEventListener("click", clearCanvas);
     urlButton.addEventListener("click", copyURL);
+    predictButton.addEventListener("click", getImageTensor);
+    
   });
 </script>
