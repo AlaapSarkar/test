@@ -79,7 +79,7 @@
     
     function getImageTensor(){
       console.log("inside getImageTensor function");
-      const imageTensor = tf.fromPixels(canvas);
+      const imageTensor = tf.browser.fromPixels(canvas);
       console.log(imageTensor.shape);
     }
 
