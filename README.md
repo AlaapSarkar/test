@@ -16,7 +16,7 @@
     const context = canvas.getContext("2d");
     const clearButton = document.querySelector("#clear-button");
     const urlButton = document.querySelector("#imgulr-button");
-    const predictButton = document.querySelector("predict-button");
+    const predictButton = document.querySelector("#predict-button");
     
     //Loading model
     //console.log("Loading model...");
