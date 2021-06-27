@@ -79,8 +79,8 @@
     
     function getImageTensor(){
       console.log("inside getImageTensor function");
-      const imageTensor = tf.browser.fromPixels(canvas).resizeBilinear([28,28]);
-      console.log(imageTensor);
+      const imageTensor = tf.div(tf.browser.fromPixels(canvas, 1).resizeBilinear([28,28]),tf.scalar(255));
+      console.log(imageTensor[0]);
       console.log(imageTensor.shape);
     }
 
