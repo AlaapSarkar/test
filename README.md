@@ -93,7 +93,7 @@
       var imgTensor = getImageTensor(canvas, 28, 28);
       const prediction = model.predict(imgTensor);
       predictedNumber = tf.argMax(prediction, 1).asScalar();
-      confidence = tf.max(prediction, 1).asScalar().toFixed(4);
+      confidence = tf.max(prediction, 1).asScalar().asType('string');
       console.log(confidence);
       //predDisplay.textContent=;
       confDisplay.textContent=confidence;
