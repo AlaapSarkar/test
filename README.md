@@ -19,13 +19,13 @@
     const predictButton = document.querySelector("#predict-button");
     
     //Loading model
-    console.log("Loading model...");
-    async function loadModel(){
-      const model = await tf.loadLayersModel("model/model.json");
-    }
-    loadModel()
-    console.log("Model loaded...");
-
+    let model;
+    (async function () {
+      console.log("Loading model...");
+      model = await tf.loadLayersModel("model/model.json");
+      console.log("Model loaded...");
+    })();
+  
     canvas.height = 300;
     canvas.width = 300;
 
