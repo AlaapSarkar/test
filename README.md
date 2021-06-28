@@ -20,7 +20,10 @@
     
     //Loading model
     console.log("Loading model...");
-    const model = await tf.loadLayersModel("model/model.json");
+    async function loadModel(){
+      const model = await tf.loadLayersModel("model/model.json");
+    }
+    loadModel()
     console.log("Model loaded...");
 
     canvas.height = 300;
