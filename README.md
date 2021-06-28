@@ -17,6 +17,8 @@
     const clearButton = document.querySelector("#clear-button");
     const urlButton = document.querySelector("#imgulr-button");
     const predictButton = document.querySelector("#predict-button");
+    const predDisplay = document.querySelector("#predicted-number");
+    const confDisplay = document.querySelector("#confidence");
     
     //Loading model
     let model;
@@ -68,6 +70,8 @@
     function clearCanvas(){
       context.fillStyle = "black";
       context.fillRect(0, 0, canvas.width, canvas.height);
+      predDisplay.textContent="";
+      confDisplay.textContent="";
     }
 
     function copyURL(){
@@ -88,9 +92,11 @@
     function getPrediction(){
       var imgTensor = getImageTensor(canvas, 28, 28);
       const prediction = model.predict(imgTensor);
-      prediction.print(true);
-      tf.argMax(prediction, 1).asScalar().print(true);
-      tf.max(prediction, 1).asScalar().print(true);
+      predictedNumber = tf.argMax(prediction, 1).asScalar();
+      confidence = tf.max(prediction, 1).asScalar().toFixed(4);
+      console.log(confidence);
+      //predDisplay.textContent=;
+      confDisplay.textContent=confidence;
     }
 
     //Event listeners
