@@ -94,7 +94,7 @@
       const prediction = model.predict(imgTensor);
       predictedNumber = tf.argMax(prediction, 1).asScalar().dataSync()[0];
       confidence = tf.max(prediction, 1).asScalar().dataSync()[0];
-      //predDisplay.textContent=predictedNumber.toString();
+      predDisplay.textContent=predictedNumber.toString();
       confDisplay.textContent=confidence.toFixed(5);
     }
 
