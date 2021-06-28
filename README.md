@@ -18,7 +18,7 @@
     const urlButton = document.querySelector("#imgulr-button");
     const predictButton = document.querySelector("#predict-button");
     
-    Loading model
+    //Loading model
     console.log("Loading model...");
     const model = await tf.loadLayersModel("model/model.json");
     console.log("Model loaded...");
