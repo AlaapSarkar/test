@@ -80,7 +80,7 @@
     function getImageTensor(){
       console.log("inside getImageTensor function");
       const imageTensor = tf.div(tf.browser.fromPixels(canvas, 1).resizeBilinear([28,28]),tf.scalar(255));
-      imageTensor.print(True);
+      imageTensor.print(true);
       console.log(imageTensor.shape);
     }
 
