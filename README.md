@@ -90,6 +90,7 @@
       const prediction = model.predict(imgTensor);
       prediction.print(true);
       tf.argMax(prediction, 1).print();
+      tf.max(prediction, 1).print();
     }
 
     //Event listeners
