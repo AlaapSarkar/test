@@ -49,9 +49,18 @@
     
     function getMousePos(canvas, e) {
       var rect = canvas.getBoundingClientRect();
+      var clientX;
+      var clientY;
+      if (e.type == 'touchmove'){
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else if (e.type == 'mousemove'){
+        clientX = e.clientX;
+        clientY = e.clientY;
+      }
       return {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top
+        x: clientX - rect.left,
+        y: clientY - rect.top
       };
     }
 
@@ -102,6 +111,11 @@
     canvas.addEventListener("mousedown", startPosition);
     canvas.addEventListener("mouseup", finishPosition);
     canvas.addEventListener("mousemove", draw);
+    
+    canvas.addEventListener("touchstart", startPosition);
+    canvas.addEventListener("touchend", finishPosition);
+    canvas.addEventListener("touchmove", draw);
+    
     clearButton.addEventListener("click", clearCanvas);
     urlButton.addEventListener("click", copyURL);
     predictButton.addEventListener("click", getPrediction);
