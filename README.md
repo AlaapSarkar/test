@@ -93,10 +93,10 @@
       var imgTensor = getImageTensor(canvas, 28, 28);
       const prediction = model.predict(imgTensor);
       predictedNumber = tf.argMax(prediction, 1).asScalar();
-      confidence = tf.max(prediction, 1).asScalar().asType('string');
+      confidence = tf.max(prediction, 1).asScalar().asType('int32');
       console.log(confidence);
       //predDisplay.textContent=;
-      confDisplay.textContent=confidence;
+      confDisplay.textContent=confidence.toString();
     }
 
     //Event listeners
