@@ -89,7 +89,7 @@
       var imgTensor = getImageTensor(canvas, 28, 28);
       const prediction = model.predict(imgTensor);
       prediction.print(true);
-      tf.argMax(prediction).print();
+      tf.argMax(prediction, 1).print();
     }
 
     //Event listeners
