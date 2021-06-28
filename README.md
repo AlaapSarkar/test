@@ -18,10 +18,10 @@
     const urlButton = document.querySelector("#imgulr-button");
     const predictButton = document.querySelector("#predict-button");
     
-    //Loading model
-    //console.log("Loading model...");
-    //const model = await tf.loadLayersModel("model/model.json");
-    //console.log("Model loaded...");
+    Loading model
+    console.log("Loading model...");
+    const model = await tf.loadLayersModel("model/model.json");
+    console.log("Model loaded...");
 
     canvas.height = 300;
     canvas.width = 300;
@@ -77,11 +77,15 @@
       inputc.parentNode.removeChild(inputc);
     }
     
-    function getImageTensor(){
-      console.log("inside getImageTensor function");
-      const imageTensor = tf.div(tf.browser.fromPixels(canvas, 1).resizeBilinear([28,28]),tf.scalar(255));
-      imageTensor.print(true);
-      console.log(imageTensor.shape);
+    function getImageTensor(canvas, height, width){
+      const imageTensor = tf.div(tf.browser.fromPixels(canvas, 1).resizeBilinear([height,width]),tf.scalar(255));
+      return imageTensor.reshape([1, height, width, 1]);
+    }
+  
+    function getPrediction(){
+      var imgTensor = getImageTensor(canvas, 28, 28);
+      const prediction = model.predict(imgTensor);
+      console.log(prediction);
     }
 
     //Event listeners
@@ -90,7 +94,7 @@
     canvas.addEventListener("mousemove", draw);
     clearButton.addEventListener("click", clearCanvas);
     urlButton.addEventListener("click", copyURL);
-    predictButton.addEventListener("click", getImageTensor);
+    predictButton.addEventListener("click", getPrediction);
     
   });
 </script>
