@@ -92,11 +92,10 @@
     function getPrediction(){
       var imgTensor = getImageTensor(canvas, 28, 28);
       const prediction = model.predict(imgTensor);
-      predictedNumber = tf.argMax(prediction, 1).asScalar();
-      confidence = tf.max(prediction, 1).asScalar().dataSync();
-      console.log(confidence);
-      //predDisplay.textContent=;
-      confDisplay.textContent=confidence.toString();
+      predictedNumber = tf.argMax(prediction, 1).asScalar().dataSync()[0];
+      confidence = tf.max(prediction, 1).asScalar().dataSync()[0];
+      //predDisplay.textContent=predictedNumber.toString();
+      confDisplay.textContent=confidence.toFixed(5);
     }
 
     //Event listeners
