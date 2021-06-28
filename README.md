@@ -88,7 +88,7 @@
     function getPrediction(){
       var imgTensor = getImageTensor(canvas, 28, 28);
       const prediction = model.predict(imgTensor);
-      console.log(prediction);
+      prediction.print();
     }
 
     //Event listeners
